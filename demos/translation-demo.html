@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation Demo - ZLF Music</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="language-selector.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <script src="translations.js"></script>
+    <style>
+        .demo-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--bg-elevated, #1a1a1a);
+            border-radius: 16px;
+        }
+        
+        .demo-section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+        
+        .demo-title {
+            color: var(--accent-primary, #1db954);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .demo-item {
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-primary, #1db954);
+        }
+        
+        .code-block {
+            background: #0a0a0a;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #1db954;
+            margin: 0.5rem 0;
+        }
+        
+        body {
+            background: #121212;
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        .test-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        
+        .test-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--accent-primary, #1db954);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .test-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(29, 185, 84, 0.3);
+        }
+        
+        .output-box {
+            background: #0a0a0a;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            min-height: 50px;
+            border: 1px solid rgba(29, 185, 84, 0.3);
+        }
+        
+        .mini-selector {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mini Language Selector -->
+    <div class="mini-selector">
+        <div class="language-selector" id="languageSelector">
+            <button class="language-toggle" id="languageToggle">
+                <i class="fa-solid fa-globe"></i>
+                <div class="current-language">
+                    <span class="language-flag" id="currentFlag">🇮🇩</span>
+                    <span class="language-name" id="currentLangName">Indonesia</span>
+                </div>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="language-dropdown" id="languageDropdown"></div>
+        </div>
+    </div>
+
+    <div class="demo-container">
+        <h1 style="text-align: center; margin-bottom: 2rem; color: #1db954;">
+            🌐 Multi-Language Translation System Demo
+        </h1>
+
+        <!-- Section 1: Basic Translations -->
+        <div class="demo-section">
+            <h2 class="demo-title">1. Basic Text Translation</h2>
+            <div class="demo-item">
+                <strong>Navigation:</strong><br>
+                <span data-i18n="home">Home</span> | 
+                <span data-i18n="myLibrary">My Library</span> | 
+                <span data-i18n="recentlyPlayed">Recently Played</span>
+            </div>
+            <div class="demo-item">
+                <strong>Stats:</strong><br>
+                <span data-i18n="totalPlaylists">Total Playlists</span> • 
+                <span data-i18n="favoriteArtists">Favorite Artists</span> • 
+                <span data-i18n="topCharts">Top Charts</span>
+            </div>
+            <div class="demo-item">
+                <strong>Hero Section:</strong><br>
+                <h3 data-i18n="welcomeTitle">Welcome to Your Music Universe</h3>
+                <p data-i18n="welcomeSubtitle">Discover and enjoy ZLF's curated playlists, top charts, and favorite artists</p>
+            </div>
+        </div>
+
+        <!-- Section 2: Input Placeholders -->
+        <div class="demo-section">
+            <h2 class="demo-title">2. Input Placeholder Translation</h2>
+            <div class="demo-item">
+                <input type="text" data-i18n="searchPlaceholder" placeholder="Search playlists, artists, or songs..." 
+                       style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #333; background: #1a1a1a; color: white;">
+            </div>
+            <div class="demo-item">
+                <input type="text" data-i18n="searchInLibrary" placeholder="Search in library..." 
+                       style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #333; background: #1a1a1a; color: white;">
+            </div>
+        </div>
+
+        <!-- Section 3: Button Translations -->
+        <div class="demo-section">
+            <h2 class="demo-title">3. Button Translation</h2>
+            <div class="test-buttons">
+                <button class="test-btn" data-i18n="exploreLibrary">Explore Library</button>
+                <button class="test-btn" data-i18n="playNow">Play Now</button>
+                <button class="test-btn" data-i18n="addToLibrary">Add to Library</button>
+                <button class="test-btn" data-i18n="share">Share</button>
+            </div>
+        </div>
+
+        <!-- Section 4: JavaScript API Demo -->
+        <div class="demo-section">
+            <h2 class="demo-title">4. JavaScript API Testing</h2>
+            
+            <div class="demo-item">
+                <strong>Get Current Language:</strong>
+                <div class="code-block">i18n.currentLang</div>
+                <button class="test-btn" onclick="testGetCurrentLang()">Run Test</button>
+                <div class="output-box" id="currentLangOutput"></div>
+            </div>
+
+            <div class="demo-item">
+                <strong>Get Translation:</strong>
+                <div class="code-block">i18n.t('home')</div>
+                <button class="test-btn" onclick="testGetTranslation()">Run Test</button>
+                <div class="output-box" id="translationOutput"></div>
+            </div>
+
+            <div class="demo-item">
+                <strong>Get All Languages:</strong>
+                <div class="code-block">i18n.getAvailableLanguages()</div>
+                <button class="test-btn" onclick="testGetLanguages()">Run Test</button>
+                <div class="output-box" id="languagesOutput"></div>
+            </div>
+
+            <div class="demo-item">
+                <strong>Quick Language Switch:</strong>
+                <div class="test-buttons">
+                    <button class="test-btn" onclick="i18n.setLanguage('id')">🇮🇩 Indonesia</button>
+                    <button class="test-btn" onclick="i18n.setLanguage('en')">🇺🇸 English</button>
+                    <button class="test-btn" onclick="i18n.setLanguage('es')">🇪🇸 Español</button>
+                    <button class="test-btn" onclick="i18n.setLanguage('fr')">🇫🇷 Français</button>
+                    <button class="test-btn" onclick="i18n.setLanguage('de')">🇩🇪 Deutsch</button>
+                    <button class="test-btn" onclick="i18n.setLanguage('ja')">🇯🇵 日本語</button>
+                    <button class="test-btn" onclick="i18n.setLanguage('ko')">🇰🇷 한국어</button>
+                    <button class="test-btn" onclick="i18n.setLanguage('zh')">🇨🇳 中文</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Genre Recommendations -->
+        <div class="demo-section">
+            <h2 class="demo-title" data-i18n="musicRecs">5. Music Recommendations</h2>
+            <p data-i18n="recsDesc">Discover new music based on your favorite genres</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <div class="demo-item">
+                    <h4 data-i18n="pop">Pop</h4>
+                    <p data-i18n="popDesc" style="font-size: 0.9rem; opacity: 0.8;">Latest and greatest pop hits</p>
+                </div>
+                <div class="demo-item">
+                    <h4 data-i18n="rock">Rock</h4>
+                    <p data-i18n="rockDesc" style="font-size: 0.9rem; opacity: 0.8;">Classic rock and modern hits</p>
+                </div>
+                <div class="demo-item">
+                    <h4 data-i18n="jazz">Jazz</h4>
+                    <p data-i18n="jazzDesc" style="font-size: 0.9rem; opacity: 0.8;">Classic and contemporary jazz</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: Event Listener Demo -->
+        <div class="demo-section">
+            <h2 class="demo-title">6. Event Listener Test</h2>
+            <div class="demo-item">
+                <strong>Language Change Events:</strong>
+                <div class="output-box" id="eventOutput">Change language to see events...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Test Functions
+        function testGetCurrentLang() {
+            const output = document.getElementById('currentLangOutput');
+            const langInfo = i18n.getCurrentLanguageInfo();
+            output.innerHTML = `
+                <strong>Current Language:</strong><br>
+                Code: ${langInfo.code}<br>
+                Name: ${langInfo.name}<br>
+                Flag: ${langInfo.flag}
+            `;
+        }
+
+        function testGetTranslation() {
+            const output = document.getElementById('translationOutput');
+            const keys = ['home', 'myLibrary', 'welcomeTitle', 'exploreLibrary'];
+            const translations = keys.map(key => `${key}: "${i18n.t(key)}"`).join('<br>');
+            output.innerHTML = translations;
+        }
+
+        function testGetLanguages() {
+            const output = document.getElementById('languagesOutput');
+            const languages = i18n.getAvailableLanguages();
+            const langList = languages.map(lang => 
+                `${lang.flag} ${lang.name} (${lang.code})`
+            ).join('<br>');
+            output.innerHTML = langList;
+        }
+
+        // Event Listener
+        let eventCount = 0;
+        window.addEventListener('languageChanged', (e) => {
+            eventCount++;
+            const output = document.getElementById('eventOutput');
+            const langInfo = i18n.getCurrentLanguageInfo();
+            output.innerHTML = `
+                <strong>Event #${eventCount}:</strong><br>
+                Changed to: ${langInfo.flag} ${langInfo.name} (${e.detail.language})<br>
+                Timestamp: ${new Date().toLocaleTimeString()}
+            `;
+        });
+
+        // Auto-run some tests on load
+        window.addEventListener('DOMContentLoaded', () => {
+            testGetCurrentLang();
+        });
+    </script>
+
+    <script src="language-handler.js"></script>
+</body>
+</html>

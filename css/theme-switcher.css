@@ -1,0 +1,573 @@
+/* Theme Switcher Styles */
+
+/* Default (Dark Theme) */
+:root {
+    --bg-base: #121212;
+    --bg-elevated: #1a1a1a;
+    --bg-card: #1e1e1e;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --accent-primary: #1db954;
+    --accent-hover: #1ed760;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+    --bg-base: #f5f5f5;
+    --bg-elevated: #ffffff;
+    --bg-card: #fafafa;
+    --text-primary: #121212;
+    --text-secondary: #666666;
+    --accent-primary: #1db954;
+    --accent-hover: #1ed760;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Theme Switcher Button */
+.theme-switcher {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+}
+
+.theme-toggle:hover {
+    background: rgba(29, 185, 84, 0.1);
+    border-color: var(--accent-primary);
+    transform: scale(1.05);
+}
+
+.theme-toggle i {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+/* Icon transitions */
+.theme-icon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.theme-icon i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.theme-icon .fa-moon {
+    opacity: 1;
+}
+
+.theme-icon .fa-sun {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(180deg);
+}
+
+[data-theme="light"] .theme-icon .fa-moon {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-180deg);
+}
+
+[data-theme="light"] .theme-icon .fa-sun {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+/* Smooth theme transition */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Only transition themed properties, not all properties */
+.sidebar,
+.main-content,
+.top-bar,
+.hero,
+.stat-card,
+.featured-card,
+.info-card,
+.recommendation-card,
+.quote-card,
+.filter-btn,
+.nav-btn,
+.theme-toggle,
+.language-toggle,
+.language-dropdown,
+.main-footer,
+.scroll-top,
+.btn-primary,
+.btn-secondary,
+.library-header,
+.update-badge,
+.hero-badge {
+    transition: background-color 0.3s ease, 
+                border-color 0.3s ease, 
+                color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Light theme specific adjustments */
+[data-theme="light"] body {
+    background: var(--bg-base);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .sidebar {
+    background: var(--bg-elevated);
+    border-right: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .main-content {
+    background: var(--bg-base);
+}
+
+[data-theme="light"] .hero {
+    background: linear-gradient(135deg, 
+        rgba(29, 185, 84, 0.15) 0%, 
+        rgba(29, 185, 84, 0.05) 50%,
+        var(--bg-base) 100%);
+}
+
+[data-theme="light"] .stat-card,
+[data-theme="light"] .featured-card,
+[data-theme="light"] .info-card,
+[data-theme="light"] .recommendation-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+[data-theme="light"] .nav-item:hover,
+[data-theme="light"] .playlist-link:hover {
+    background: rgba(29, 185, 84, 0.1);
+}
+
+[data-theme="light"] .top-bar {
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+[data-theme="light"] .nav-btn {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .nav-btn:hover {
+    background: rgba(29, 185, 84, 0.1);
+    border-color: var(--accent-primary);
+}
+
+[data-theme="light"] .theme-toggle {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .filter-btn {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .filter-btn:hover,
+[data-theme="light"] .filter-btn.active {
+    background: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
+}
+
+[data-theme="light"] .view-toggle {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .view-toggle:hover {
+    background: rgba(29, 185, 84, 0.1);
+    border-color: var(--accent-primary);
+}
+
+[data-theme="light"] .scroll-top {
+    background: var(--accent-primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
+}
+
+[data-theme="light"] .scroll-top:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+[data-theme="light"] .main-footer {
+    background: var(--bg-elevated);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .main-footer a {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .main-footer a:hover {
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .library-header {
+    background: linear-gradient(135deg, 
+        rgba(29, 185, 84, 0.15) 0%, 
+        rgba(29, 185, 84, 0.05) 50%,
+        var(--bg-base) 100%);
+}
+
+[data-theme="light"] .library-icon {
+    background: var(--accent-primary);
+    color: white;
+}
+
+[data-theme="light"] .section-header h2 {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .item-count {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .quote-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 24px var(--shadow);
+}
+
+[data-theme="light"] .quote-icon {
+    color: rgba(29, 185, 84, 0.3);
+}
+
+[data-theme="light"] .quote-text {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .quote-author {
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .info-note {
+    background: rgba(29, 185, 84, 0.1);
+    border-left-color: var(--accent-primary);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .update-badge {
+    background: var(--accent-primary);
+    color: white;
+}
+
+[data-theme="light"] .update-content strong {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .update-content span {
+    color: var(--text-secondary);
+}
+
+/* Buttons in light mode */
+[data-theme="light"] .btn-primary {
+    background: var(--accent-primary);
+    color: white;
+}
+
+[data-theme="light"] .btn-primary:hover {
+    background: var(--accent-hover);
+}
+
+[data-theme="light"] .btn-secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .btn-secondary:hover {
+    background: rgba(29, 185, 84, 0.1);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+/* Hero section light mode */
+[data-theme="light"] .hero-badge {
+    background: rgba(29, 185, 84, 0.15);
+    color: var(--accent-primary);
+    border: 1px solid rgba(29, 185, 84, 0.3);
+}
+
+[data-theme="light"] .hero-title {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .hero-subtitle {
+    color: var(--text-secondary);
+}
+
+/* Featured overlay in light mode */
+[data-theme="light"] .featured-overlay {
+    background: linear-gradient(135deg, 
+        rgba(29, 185, 84, 0.85) 0%, 
+        rgba(29, 185, 84, 0.95) 100%);
+}
+
+[data-theme="light"] .featured-btn {
+    background: white;
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .featured-btn:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: scale(1.1);
+}
+
+/* User profile in sidebar */
+[data-theme="light"] .user-profile {
+    border-top: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .user-avatar {
+    background: var(--accent-primary);
+    color: white;
+}
+
+[data-theme="light"] .user-name {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .user-status {
+    color: var(--text-secondary);
+}
+
+/* Stat cards numbers */
+[data-theme="light"] .stat-number {
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .stat-label {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .stat-icon {
+    color: var(--accent-primary);
+}
+
+/* Recommendation cards */
+[data-theme="light"] .recommendation-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .recommendation-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 24px rgba(29, 185, 84, 0.15);
+}
+
+[data-theme="light"] .recommendation-card h4 {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .recommendation-card p {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .language-toggle {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+}
+
+[data-theme="light"] .language-dropdown {
+    background: var(--bg-elevated);
+    border-color: var(--border-color);
+    box-shadow: 0 10px 40px var(--shadow);
+}
+
+[data-theme="light"] .language-option:hover {
+    background: rgba(29, 185, 84, 0.1);
+}
+
+[data-theme="light"] .spotify-item iframe {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+}
+
+/* Theme switcher in top bar */
+.top-bar-right .theme-switcher {
+    /* pindahkan switcher ke pojok kanan atas top-bar */
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0;
+    z-index: 110;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .theme-toggle i {
+        font-size: 1.1rem;
+    }
+    .top-bar-right .theme-switcher {
+        right: 0.75rem;
+    }
+}
+
+/* Theme change animation */
+@keyframes themeChange {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+.theme-changing {
+    animation: themeChange 0.5s ease;
+}
+
+/* Tooltip for theme toggle */
+.theme-toggle::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.theme-toggle:hover::after {
+    opacity: 1;
+    visibility: visible;
+    top: calc(100% + 0.75rem);
+}
+
+/* Top bar layout fixes */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.top-bar-left {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Make sure theme toggle is visible */
+[data-theme="light"] .top-bar-right .theme-toggle {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-color);
+}
+
+/* Fix filter bar in light mode */
+[data-theme="light"] .filter-bar {
+    background: transparent;
+}
+
+/* Library meta text */
+[data-theme="light"] .library-meta {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .library-meta .dot {
+    color: var(--text-secondary);
+}
+
+/* Section backgrounds */
+[data-theme="light"] .content-section {
+    background: transparent;
+}
+
+[data-theme="light"] .stats-section {
+    background: transparent;
+}
+
+/* Make sure all text is readable in light mode */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] p {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .section-header p {
+    color: var(--text-secondary);
+}
+
+/* Footer links contrast */
+[data-theme="light"] .footer-content {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .footer-logo span {
+    color: var(--text-primary);
+}
+
+/* Better shadow for elevated elements in light mode */
+[data-theme="light"] .stat-card,
+[data-theme="light"] .featured-card,
+[data-theme="light"] .info-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08),
+                0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .stat-card:hover,
+[data-theme="light"] .featured-card:hover,
+[data-theme="light"] .info-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12),
+                0 4px 12px rgba(0, 0, 0, 0.08);
+}
+

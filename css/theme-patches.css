@@ -1,0 +1,245 @@
+/* Additional Light Mode Fixes & Patches */
+
+/* Ensure proper text contrast in light mode */
+[data-theme="light"] {
+    color-scheme: light;
+}
+
+/* Navigation items in sidebar */
+[data-theme="light"] .nav-item {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .nav-item.active {
+    background: rgba(29, 185, 84, 0.15);
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .playlist-link {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .playlist-link:hover {
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .sidebar h3 {
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+}
+
+/* Hero floating discs adjustment for light mode */
+[data-theme="light"] .floating-disc {
+    background: linear-gradient(135deg, 
+        rgba(29, 185, 84, 0.2) 0%, 
+        rgba(29, 185, 84, 0.05) 100%);
+    border: 1px solid rgba(29, 185, 84, 0.2);
+}
+
+/* Featured collection cards text */
+[data-theme="light"] .featured-card h3 {
+    color: white;
+}
+
+[data-theme="light"] .featured-card p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Better input styling for light mode */
+[data-theme="light"] input[type="text"],
+[data-theme="light"] input[type="search"],
+[data-theme="light"] textarea {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+}
+
+/* Spotify embeds border in light mode */
+[data-theme="light"] .spotify-item iframe {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Grid/List view toggle */
+[data-theme="light"] .view-toggle.active {
+    background: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
+}
+
+/* Loading states */
+[data-theme="light"] .loading-spinner {
+    border-color: var(--border-color);
+    border-top-color: var(--accent-primary);
+}
+
+/* Dividers and separators */
+[data-theme="light"] .divider,
+[data-theme="light"] hr {
+    border-color: var(--border-color);
+    opacity: 1;
+}
+
+/* Tooltip styling for light mode */
+[data-theme="light"] .tooltip,
+[data-theme="light"] [data-tooltip]::after {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure icons maintain visibility */
+[data-theme="light"] .fa-solid,
+[data-theme="light"] .fa-regular {
+    color: inherit;
+}
+
+[data-theme="light"] .stat-icon i,
+[data-theme="light"] .featured-icon i,
+[data-theme="light"] .info-icon i {
+    color: var(--accent-primary);
+}
+
+/* Better borders for cards */
+[data-theme="light"] .card,
+[data-theme="light"] .card-container {
+    border: 1px solid var(--border-color);
+}
+
+/* Selection color for light mode */
+[data-theme="light"] ::selection {
+    background: rgba(29, 185, 84, 0.3);
+    color: var(--text-primary);
+}
+
+/* Scrollbar styling for light mode */
+[data-theme="light"] ::-webkit-scrollbar-track {
+    background: var(--bg-card);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: rgba(29, 185, 84, 0.4);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+    background: rgba(29, 185, 84, 0.6);
+}
+
+/* Focus states for accessibility */
+[data-theme="light"] button:focus-visible,
+[data-theme="light"] a:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+/* Badge styling */
+[data-theme="light"] .badge {
+    background: var(--accent-primary);
+    color: white;
+}
+
+/* Alert/notification styling */
+[data-theme="light"] .alert,
+[data-theme="light"] .notification {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Ensure proper stacking context */
+[data-theme="light"] .modal-overlay {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* Better hover states for interactive elements */
+[data-theme="light"] .interactive:hover,
+[data-theme="light"] .clickable:hover {
+    background: rgba(29, 185, 84, 0.08);
+}
+
+/* Table styling if present */
+[data-theme="light"] table {
+    border-color: var(--border-color);
+}
+
+[data-theme="light"] th {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border-color);
+}
+
+[data-theme="light"] td {
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] tr:hover {
+    background: rgba(29, 185, 84, 0.05);
+}
+
+/* Code blocks if present */
+[data-theme="light"] code,
+[data-theme="light"] pre {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+/* Links */
+[data-theme="light"] a {
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] a:hover {
+    color: var(--accent-hover);
+}
+
+/* Disabled states */
+[data-theme="light"] button:disabled,
+[data-theme="light"] input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+}
+
+/* Active states */
+[data-theme="light"] button:active,
+[data-theme="light"] .btn:active {
+    transform: scale(0.98);
+}
+
+/* Ensure proper z-index layering */
+[data-theme="light"] .sticky-header {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Mobile-specific light mode adjustments */
+@media (max-width: 768px) {
+    [data-theme="light"] .sidebar {
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+    }
+    
+    [data-theme="light"] .mobile-menu {
+        background: var(--bg-elevated);
+        border: 1px solid var(--border-color);
+    }
+}
+
+/* Print styles for light mode */
+@media print {
+    [data-theme="light"] body {
+        background: white;
+        color: black;
+    }
+}

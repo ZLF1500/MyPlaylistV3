@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZLF Music Library - Premium Collection</title>
+    <link rel="icon" href="assets/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/language-selector.css">
+    <link rel="stylesheet" href="css/theme-switcher.css">
+    <link rel="stylesheet" href="css/theme-patches.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="js/translations.js"></script>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-music"></i>
+                <span>ZLF Music</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item active">
+                <i class="fa-solid fa-house"></i>
+                <span data-i18n="home">Home</span>
+            </a>
+            <a href="MyPlaylist.html" class="nav-item">
+                <i class="fa-solid fa-heart"></i>
+                <span data-i18n="myLibrary">My Library</span>
+            </a>
+            <!-- <a href="#" class="nav-item">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span data-i18n="recentlyPlayed">Recently Played</span>
+            </a> -->
+        </nav>
+
+        <div class="sidebar-playlists">
+            <h3 data-i18n="quickLinks">Quick Links</h3>
+            <a href="#featured" class="playlist-link">
+                <i class="fa-solid fa-star"></i>
+                <span data-i18n="featured">Featured</span>
+            </a>
+            <a href="#stats" class="playlist-link">
+                <i class="fa-solid fa-chart-simple"></i>
+                <span data-i18n="statistics">Statistics</span>
+            </a>
+            <a href="#updates" class="playlist-link">
+                <i class="fa-solid fa-bell"></i>
+                <span data-i18n="updates">Updates</span>
+            </a>
+        </div>
+
+        <!-- Language Selector -->
+        <div class="language-selector" id="languageSelector">
+            <button class="language-toggle" id="languageToggle">
+                <i class="fa-solid fa-globe"></i>
+                <div class="current-language">
+                    <span class="language-flag" id="currentFlag">🇮🇩</span>
+                    <span class="language-name" id="currentLangName">Indonesia</span>
+                </div>
+                <i class="fa-solid fa-chevron-up"></i>
+            </button>
+            <div class="language-dropdown" id="languageDropdown">
+                <!-- Languages will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">ZLF</div>
+                <div class="user-info">
+                    <div class="user-name">ZLF</div>
+                    <div class="user-status" data-i18n="premiumUser">Premium User</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <button class="nav-btn" id="prevBtn">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="nav-btn" id="nextBtn">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="top-bar-right">
+                <!-- Theme Switcher -->
+                <div class="theme-switcher">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle theme" data-tooltip="Switch to Light Mode">
+                        <div class="theme-icon">
+                            <i class="fa-solid fa-moon"></i>
+                            <i class="fa-solid fa-sun"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fa-solid fa-crown"></i>
+                    <span data-i18n="premiumCollection">Premium Collection</span>
+                </div>
+                <h1 class="hero-title" data-i18n="welcomeTitle">Welcome to Your Music Universe</h1>
+                <p class="hero-subtitle" data-i18n="welcomeSubtitle">Discover and enjoy ZLF's curated playlists, top charts, and favorite artists</p>
+                <div class="hero-actions">
+                    <a href="MyPlaylist.html" class="btn-primary">
+                        <i class="fa-solid fa-play"></i>
+                        <span data-i18n="exploreLibrary">Explore Library</span>
+                    </a>
+                    <a href="#featured" class="btn-secondary">
+                        <i class="fa-solid fa-star"></i>
+                        <span data-i18n="viewFeatured">View Featured</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-decoration">
+                <div class="floating-disc disc-1"></div>
+                <div class="floating-disc disc-2"></div>
+                <div class="floating-disc disc-3"></div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section" id="stats">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-list-music"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-number">2+</div>
+                    <div class="stat-label" data-i18n="playlists">Playlists</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-user-music"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-number">2+</div>
+                    <div class="stat-label" data-i18n="myArtists">Artists</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label" data-i18n="topCharts">Top Charts</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="stat-info">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label" data-i18n="favSongs">Favorite Songs</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Section -->
+        <section class="content-section" id="featured">
+            <div class="section-header">
+                <h2 data-i18n="featuredCollections">Featured Collections</h2>
+                <p data-i18n="featuredDesc">Handpicked playlists just for you</p>
+            </div>
+            <div class="featured-grid">
+                <div class="featured-card card-1">
+                    <div class="featured-overlay">
+                        <div class="featured-icon">
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
+                        <h3 data-i18n="topChartsTitle">Top Hits</h3>
+                        <p data-i18n="topChartsDesc">Global chart toppers</p>
+                        <a href="MyPlaylist.html#top" class="featured-btn">
+                            <i class="fa-solid fa-play"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="featured-card card-2">
+                    <div class="featured-overlay">
+                        <div class="featured-icon">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                        <h3 data-i18n="favoriteMix">My Favorites</h3>
+                        <p data-i18n="favoriteMixDesc">Personally curated</p>
+                        <a href="MyPlaylist.html#favorite" class="featured-btn">
+                            <i class="fa-solid fa-play"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="featured-card card-3">
+                    <div class="featured-overlay">
+                        <div class="featured-icon">
+                            <i class="fa-solid fa-user-music"></i>
+                        </div>
+                        <h3 data-i18n="myArtists">Top Artists</h3>
+                        <p>Follow your favorites</p>
+                        <a href="MyPlaylist.html#artists" class="featured-btn">
+                            <i class="fa-solid fa-play"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Info Section -->
+        <section class="content-section info-section">
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fa-solid fa-circle-info"></i>
+                    </div>
+                    <h3 data-i18n="aboutCollection">About This Collection</h3>
+                    <p data-i18n="aboutCollectionDesc">Explore ZLF's carefully curated music library featuring top playlists, trending songs, and favorite artists from around the world.</p>
+                    <div class="info-note">
+                        <i class="fa-solid fa-exclamation-triangle"></i>
+                        <div>
+                            <strong data-i18n="important">Important:</strong> <span data-i18n="spotifyNote">To remove "Preview" mode, please log in to Spotify in your browser. Note: Full playback may not work on mobile devices.</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-card" id="updates">
+                    <div class="info-icon">
+                        <i class="fa-solid fa-newspaper"></i>
+                    </div>
+                    <h3 data-i18n="updateHistory">Latest Updates</h3>
+                    <div class="update-list">
+                        <div class="update-item">
+                            <div class="update-badge">V4.0</div>
+                            <div class="update-content">
+                                <strong data-i18n="premiumRedesign">Premium Redesign</strong>
+                                <span data-i18n="completeUIOverhaul">Complete UI overhaul with dark premium theme</span>
+                            </div>
+                        </div>
+                        <div class="update-item">
+                            <div class="update-badge">V3.0</div>
+                            <div class="update-content">
+                                <strong>UI Improvements</strong>
+                                <span>Enhanced user interface</span>
+                            </div>
+                        </div>
+                        <div class="update-item">
+                            <div class="update-badge">V2.1</div>
+                            <div class="update-content">
+                                <strong>Icon Updates</strong>
+                                <span>Added icon images</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Section -->
+        <section class="quote-section">
+            <div class="quote-card">
+                <i class="fa-solid fa-quote-left quote-icon"></i>
+                <blockquote class="quote-text">
+                    "Nantikan saja"
+                </blockquote>
+                <div class="quote-author">— ZLF</div>
+            </div>
+        </section>
+
+        <!-- Recommendations -->
+        <section class="content-section">
+            <div class="section-header">
+                <h2 data-i18n="musicRecs">Music Recommendations</h2>
+                <p data-i18n="recsDesc">Discover new vibes</p>
+            </div>
+            <div class="recommendation-grid">
+                <a href="#" class="recommendation-card">
+                    <div class="rec-icon">🎸</div>
+                    <h4 data-i18n="rock">Rock untuk Semangat Pagi</h4>
+                    <p data-i18n="rockDesc">Energize your morning</p>
+                </a>
+                <a href="#" class="recommendation-card">
+                    <div class="rec-icon">🎷</div>
+                    <h4 data-i18n="jazz">Jazz untuk Malam Santai</h4>
+                    <p data-i18n="jazzDesc">Relax and unwind</p>
+                </a>
+                <a href="#" class="recommendation-card">
+                    <div class="rec-icon">🎤</div>
+                    <h4 data-i18n="pop">Pop Terbaru</h4>
+                    <p data-i18n="popDesc">Latest pop hits</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <i class="fa-solid fa-music"></i>
+                        <span>ZLF Music</span>
+                    </div>
+                    <p>&copy; 2025 MyPlaylist ZLF. All rights reserved.</p>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-links">
+                        <a href="#">About</a>
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script src="js/script.js"></script>
+    <script src="js/language-handler.js"></script>
+    <script src="js/theme-switcher.js"></script>
+</body>
+</html>

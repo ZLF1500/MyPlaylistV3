@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Library - ZLF Music</title>
+    <link rel="icon" href="assets/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/language-selector.css">
+    <link rel="stylesheet" href="css/theme-switcher.css">
+    <link rel="stylesheet" href="css/theme-patches.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="js/translations.js"></script>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-music"></i>
+                <span>ZLF Music</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fa-solid fa-house"></i>
+                <span data-i18n="home">Home</span>
+            </a>
+            <a href="MyPlaylist.html" class="nav-item active">
+                <i class="fa-solid fa-heart"></i>
+                <span data-i18n="myLibrary">My Library</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-playlists">
+            <h3 data-i18n="sections">Sections</h3>
+            <a href="#favorite-songs" class="playlist-link">
+                <i class="fa-solid fa-heart"></i>
+                <span data-i18n="favoriteSongs">Favorite Songs</span>
+            </a>
+            <a href="#top" class="playlist-link">
+                <i class="fa-solid fa-ranking-star"></i>
+                <span data-i18n="topSongs">Top Songs</span>
+            </a>
+            <a href="#playlists" class="playlist-link">
+                <i class="fa-solid fa-rectangle-list"></i>
+                <span data-i18n="myPlaylists">My Playlists</span>
+            </a>
+            <a href="#artists" class="playlist-link">
+                <i class="fa-solid fa-circle-user"></i>
+                <span data-i18n="myArtists">My Artists</span>
+            </a>
+        </div>
+
+        <!-- Language Selector -->
+        <div class="language-selector" id="languageSelector">
+            <button class="language-toggle" id="languageToggle">
+                <i class="fa-solid fa-globe"></i>
+                <div class="current-language">
+                    <span class="language-flag" id="currentFlag">🇮🇩</span>
+                    <span class="language-name" id="currentLangName">Indonesia</span>
+                </div>
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="language-dropdown" id="languageDropdown">
+                <!-- Languages will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">ZLF</div>
+                <div class="user-info">
+                    <div class="user-name">ZLF</div>
+                    <div class="user-status" data-i18n="premiumUser">Premium User</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <button class="nav-btn" id="prevBtn">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="nav-btn" id="nextBtn">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="top-bar-right">
+                <!-- Theme Switcher -->
+                <div class="theme-switcher">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle theme" data-tooltip="Switch to Light Mode">
+                        <div class="theme-icon">
+                            <i class="fa-solid fa-moon"></i>
+                            <i class="fa-solid fa-sun"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Library Header -->
+        <section class="library-header">
+            <div class="library-info">
+                <div class="library-icon">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="library-details">
+                    <span class="library-type" data-i18n="playlistCollection">Playlist Collection</span>
+                    <h1 data-i18n="myMusicLibrary">My Music Library</h1>
+                    <p class="library-meta">
+                        <span><i class="fa-solid fa-user"></i> ZLF</span>
+                        <span class="dot">•</span>
+                        <span>20+ items</span>
+                        <span class="dot">•</span>
+                        <span>Updated 2025</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <div class="filter-left">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fa-solid fa-globe"></i>
+                    <span data-i18n="filterAll">All</span>
+                </button>
+                <button class="filter-btn" data-filter="favorite">
+                    <i class="fa-solid fa-heart"></i>
+                    <span data-i18n="filterFavorites">Favorites</span>
+                </button>
+                <button class="filter-btn" data-filter="playlist">
+                    <i class="fa-solid fa-list"></i>
+                    <span data-i18n="filterPlaylists">Playlists</span>
+                </button>
+                <button class="filter-btn" data-filter="artist">
+                    <i class="fa-solid fa-user-music"></i>
+                    <span data-i18n="filterArtists">Artists</span>
+                </button>
+            </div>
+            <div class="filter-right">
+                <button class="view-toggle" id="viewToggle" title="Toggle grid/list view">
+                    <i class="fa-solid fa-grip"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Favorite Songs Section -->
+        <section class="content-section" id="favorite-songs" data-category="favorite">
+            <div class="section-header">
+                <div class="section-title-group">
+                    <h2><i class="fa-solid fa-heart"></i> <span data-i18n="favoriteSongs">My Favorite Songs</span></h2>
+                    <span class="item-count">6 <span data-i18n="songs">songs</span></span>
+                </div>
+            </div>
+            <div class="spotify-grid" id="favoriteSongsGrid">
+                <div class="spotify-item" data-type="track">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/track/6J3pPfXLujwsWQpvR6XMgC?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="352" 
+                        frameborder="0" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="spotify-item" data-type="track">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/track/1H2pPtoPS8kNlqCN7HfT6g?utm_source=generator&theme=0" 
+                        height="352" 
+                        frameborder="0" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="spotify-item" data-type="track">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/track/7aux5UvnlBDYlrlwoczifW?utm_source=generator&theme=0" 
+                        height="352" 
+                        frameborder="0" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="spotify-item" data-type="track">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/track/4e5kaIUjbskvGhpSXZdiA6?utm_source=generator&theme=0" 
+                        height="352" 
+                        frameborder="0" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="spotify-item" data-type="track">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/track/0W0LK0oJEAU2cdYytd27gC?utm_source=generator&theme=0" 
+                        height="352" 
+                        frameborder="0" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="spotify-item" data-type="track">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/track/2DMlu3yzDZkUXXBu8YpkkD?utm_source=generator&theme=0" 
+                        height="352" 
+                        frameborder="0" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Songs Section -->
+        <section class="content-section" id="top" data-category="playlist">
+            <div class="section-header">
+                <div class="section-title-group">
+                    <h2><i class="fa-solid fa-ranking-star"></i> <span data-i18n="topSongs">Top Songs</span></h2>
+                    <span class="item-count">6 <span data-i18n="playlists">playlists</span></span>
+                </div>
+            </div>
+            <div class="spotify-grid" id="topSongsGrid">
+                <div class="spotify-item" data-type="playlist">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/playlist/37i9dQZEVXbKpV6RVDTWcZ?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="380" 
+                        frameborder="0" 
+                        allowtransparency="true" 
+                        allow="encrypted-media">
+                    </iframe>
+                </div>
+                <div class="spotify-item" data-type="playlist">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/playlist/37i9dQZEVXbObFQZ3JLcXt?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="380" 
+                        frameborder="0" 
+                        allowtransparency="true" 
+                        allow="encrypted-media">
+                    </iframe>
+                </div>
+                <div class="spotify-item" data-type="playlist">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/playlist/37i9dQZEVXbIZK8aUquyx8?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="380" 
+                        frameborder="0" 
+                        allowtransparency="true" 
+                        allow="encrypted-media">
+                    </iframe>
+                </div>
+                <div class="spotify-item" data-type="playlist">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/playlist/37i9dQZEVXbLiRSasKsNU9?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="380" 
+                        frameborder="0" 
+                        allowtransparency="true" 
+                        allow="encrypted-media">
+                    </iframe>
+                </div>
+                <div class="spotify-item" data-type="playlist">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/playlist/37i9dQZEVXbMDoHDwVN2tF?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="380" 
+                        frameborder="0" 
+                        allowtransparency="true" 
+                        allow="encrypted-media">
+                    </iframe>
+                </div>
+                <div class="spotify-item" data-type="playlist">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/playlist/37i9dQZEVXbNG2KDcFcKOF?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="380" 
+                        frameborder="0" 
+                        allowtransparency="true" 
+                        allow="encrypted-media">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Playlists Section -->
+        <section class="content-section" id="playlists" data-category="playlist">
+            <div class="section-header">
+                <div class="section-title-group">
+                    <h2><i class="fa-solid fa-rectangle-list"></i> <span data-i18n="myPlaylists">My Playlists</span></h2>
+                    <span class="item-count">2 <span data-i18n="playlists">playlists</span></span>
+                </div>
+            </div>
+            <div class="spotify-grid" id="playlistsGrid">
+                <div class="spotify-item" data-type="playlist">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/playlist/53uX01Hogg89i23FEtJypM?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="380" 
+                        frameborder="0" 
+                        allowtransparency="true" 
+                        allow="encrypted-media">
+                    </iframe>
+                </div>
+                <div class="spotify-item" data-type="playlist">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/playlist/0uvAH64BPhj5viiLpb8gu6?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="380" 
+                        frameborder="0" 
+                        allowtransparency="true" 
+                        allow="encrypted-media">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Artists Section -->
+        <section class="content-section" id="artists" data-category="artist">
+            <div class="section-header">
+                <div class="section-title-group">
+                    <h2><i class="fa-solid fa-circle-user"></i> <span data-i18n="myArtists">My Artists</span></h2>
+                    <span class="item-count">2 artists</span>
+                </div>
+            </div>
+            <div class="spotify-grid artist-grid" id="artistsGrid">
+                <div class="spotify-item" data-type="artist">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/artist/6pNgnvzBa6Bthsv8SrZJYl?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="380" 
+                        frameborder="0" 
+                        allowtransparency="true" 
+                        allow="encrypted-media">
+                    </iframe>
+                </div>
+                <div class="spotify-item" data-type="artist">
+                    <iframe 
+                        data-src="https://open.spotify.com/embed/artist/4JX0GdKx8EduY2Ck7qac4H?utm_source=generator&theme=0" 
+                        width="100%" 
+                        height="380" 
+                        frameborder="0" 
+                        allowtransparency="true" 
+                        allow="encrypted-media">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <i class="fa-solid fa-music"></i>
+                        <span>ZLF Music</span>
+                    </div>
+                    <p>&copy; 2025 MyPlaylist ZLF. All rights reserved.</p>
+                </div>
+                <div class="footer-right">
+                    <div class="footer-links">
+                        <a href="#">About</a>
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Now Playing Bar (Sticky Player) -->
+    <!-- <div class="now-playing-bar" id="nowPlayingBar">
+        <div class="now-playing-content">
+            <div class="now-playing-info">
+                <div class="album-art">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+                <div class="track-info">
+                    <div class="track-name">No track playing</div>
+                    <div class="artist-name">Select a song to start</div>
+                </div>
+            </div>
+            <div class="playback-controls">
+                <button class="control-btn">
+                    <i class="fa-solid fa-backward-step"></i>
+                </button>
+                <button class="control-btn play-btn">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+                <button class="control-btn">
+                    <i class="fa-solid fa-forward-step"></i>
+                </button>
+            </div>
+            <div class="volume-controls">
+                <button class="control-btn">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <input type="range" class="volume-slider" min="0" max="100" value="70">
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script src="js/script.js"></script>
+    <script src="js/language-handler.js"></script>
+    <script src="js/theme-switcher.js"></script>
+</body>
+</html>
